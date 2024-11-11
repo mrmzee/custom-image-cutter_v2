@@ -36,6 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       body: Center(
@@ -45,16 +47,19 @@ class _MyHomePageState extends State<MyHomePage> {
             Stack(
               children: [
                 SizedBox(
-                  width: 300,
-                  height: 400,
+                  width: screenWidth, // 50% of screen width
+                  height: screenHeight * 0.5, // 50% of screen height
                   child: CustomImageCutter(
+                    minWidth: screenWidth * 0.5,
+                    minHeight: screenHeight * 0.5,
+                    isVertical: true,
+                    backgroundColor: Colors.white,
                     controller: controller,
                     cropperKey: cropImage,
                     imagePath: 'image_path',
+                    imageCover: 'assets/images/frame.png',
                     image: Image.network(
-                      'https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3', //square image
-                      // 'https://nmwa.org/wp-content/uploads/2020/01/1993.76-GAP.jpg', //portrait image
-                      // 'https://st.depositphotos.com/1034986/4574/i/950/depositphotos_45747235-stock-photo-beautiful-woman-selfie.jpg', //landscape image
+                      'https://nmwa.org/wp-content/uploads/2020/01/1993.76-GAP.jpg',
                     ),
                   ),
                 ),
